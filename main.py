@@ -1,12 +1,12 @@
-import requests
 import random
 import html
+from security import safe_requests
 
 EDUCATION_CATEGORY_ID= 9 #GK category
 API_URL=f"https://opentdb.com/api.php?amount=10&category={EDUCATION_CATEGORY_ID}&type=multiple"
 
 def get_education_questions():
-    response=requests.get(API_URL)
+    response=safe_requests.get(API_URL)
     if response.status_code==200:
         data=response.json()
         if data['response_code']==0 and data['results']:
