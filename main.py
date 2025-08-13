@@ -1,6 +1,6 @@
 import requests
-import random
 import html
+import secrets
 
 EDUCATION_CATEGORY_ID= 9 #GK category
 API_URL=f"https://opentdb.com/api.php?amount=10&category={EDUCATION_CATEGORY_ID}&type=multiple"
@@ -27,7 +27,7 @@ def run_quiz():
         correct=html.unescape(q['correct_answer'])
         incorrects=[html.unescape(a) for a in q['incorrect_answers']]
         options=incorrects + [correct]
-        random.shuffle(options)
+        secrets.SystemRandom().shuffle(options)
 
         print(f"Question {i}: {question}")
         for idx, option in enumerate (options, 1):
